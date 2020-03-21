@@ -10,7 +10,7 @@ function App() {
     <div className="App">
     <NavBar/>
     <Switch>
-      <Route path={"/video"}>
+      <Route path={"/video/:id"}>
         <Video/>
       </Route>
       <Route path={"/about"}>

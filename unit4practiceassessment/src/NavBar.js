@@ -6,9 +6,6 @@ const NavBar = () => {
         <nav>
             <h1>YOUTUBE</h1>
             <NavLink exact to={"/"}>HOME</NavLink>
-            
-            <NavLink to={"/video"}>VIDEO</NavLink>
-            
             <NavLink to={"/about"}>ABOUT</NavLink>
         </nav>
     )
