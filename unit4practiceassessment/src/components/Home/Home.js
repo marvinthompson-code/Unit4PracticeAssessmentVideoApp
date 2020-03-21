@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import API_KEY from '../../secrets'
 import { useInput } from '../../util/customHooks'
-import Results from '../Home/Results'
+import Results from './Results'
 
 const Home = () => {
     const [ searchResults, setSearchResults ] = useState([]);
@@ -19,7 +19,6 @@ const Home = () => {
                 setSearchResults(`No results for ${searchInput} found!`)
             } else {
                 setSearchResults(searchResArr)
-                // setResultList(res.data.items)
             }
             debugger
         } catch (error) {
@@ -27,19 +26,13 @@ const Home = () => {
         }
     }
 
-
-    // useEffect(() => {
-    //     setSearchResults("NOTHING HERE YET")
-    // }, [])
-
     const handleSubmit = async (e) => {
         e.preventDefault()
         fetchSearchResults(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=8&q=${searchInput}&key=${API_KEY}&order=relevance&type=video`)
     }
 
-    const ResultList = searchResults.map((video) => {
-        // <><Results key={video.id.videoId} id={video.id.videoId} video={video.snippet}/></>
-        debugger
+    const resultList = searchResults.map((video) => {
+        return(<><Results key={video.id.videoId} id={video.id.videoId} video={video.snippet}/></>)
     })
     return (
         <div className={"search"}>
@@ -48,11 +41,7 @@ const Home = () => {
                 <button type={"submit"}>Search</button>
             </form>
             <div>
-
-            {ResultList}
-                {/* This is where results will go? */}
-                {/* {searchResults} */}
-                {/* {searchInput} */}
+            {resultList}
             </div>
         </div>
     )
